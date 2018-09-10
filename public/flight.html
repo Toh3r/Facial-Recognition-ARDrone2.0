@@ -1,0 +1,136 @@
+<!-- Declare document type as html -->
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Create page title -->
+	<title>Drone Index</title>
+
+	<!-- Link style sheets -->
+  	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="/css/droneStyles.css">
+
+  	<!-- Link Google Font -->
+  	<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Orbitron:400,500|Russo+One|Timmana" rel="stylesheet">
+  	
+  	<!-- Link scripts -->
+  	<script type="text/javascript" src="/js/nodecopter-client.js"></script>
+  	<script type="text/javascript" src="/js/jquery.min.js"></script>
+  	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+  	<!-- Link favicon icon -->
+  	<link rel="icon" type="image/png" href="css/images/favicon-paper-plane-o.ico">
+
+  	<!-- Add script for button calls and dronstream-->
+	<script>
+
+		$(function () {
+            function startArDRoneStream() {
+                new NodecopterStream(document.getElementById("placeholder"), {port: 3001});
+            }
+            startArDRoneStream();
+        })
+    </script>
+
+    <script type="text/javascript">
+    	function call(name) {
+	        var xhr = new XMLHttpRequest();
+	        xhr.open('GET', name, true);
+	        xhr.send();
+      }
+    </script>
+
+</head>
+<body>
+
+	<!-- Craete nav bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	    	<!-- Add icon and title of page to nav bar -->
+	      <p class="navbar-brand"><i class="far fa-paper-plane"></i>  FlightFlight</p>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="navbar">
+	    	<!-- Information button -->
+	      <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#info" style="width: 120px">Information</button>
+
+	      <ul class="nav navbar-nav navbar-right" style="font-size: 20px">
+	      	<!-- Add link to recogniser page -->
+	        <li><a href="/">Coffee Drone  <i class="fab fa-angellist"></i></a></li>
+	        <li><a href="#"><i class="far fa-hand-spock"></i></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav> <!-- Close navbar -->
+
+	<!-- Create container to hold content -->
+	<div class = "container" align="center">
+
+		<!-- Add row to output for dronestream -->
+		<div class = "row" style="height:80%;">
+			<div class="col-lg-12" id="placeholder" style="text-align: center; padding-top: 35px;">
+   		 	</div>
+		</div> <!-- Close dronestream row -->
+
+		<!-- Add tow control information -->
+		<div class = "row" style="height:20%; background: black; padding-top:0px;">
+			<!-- Add 3 colums with contols to row -->
+			<div class = 'col-lg-4' style="border: 2px solid white" >
+				<h4>Takeoff - t</h4>
+				<h4>Land - l</h4>
+				<h4>Stop - h</h4>
+				<h4>Wave - m</h4>
+			</div>
+
+			<div class = 'col-lg-4' style="border: 2px solid white">
+				<h4>Forward - w</h4>
+				<h4>Back - s</h4>
+				<h4>Left - a</h4>
+				<h4>Right - d</h4>
+			</div>
+
+			<div class = 'col-lg-4' style="border: 2px solid white">
+				<h4>Up - Up arrow</h4>
+				<h4>Down - Down Arrow</h4>
+				<h4>Anti-Clock - <-</h4>
+				<h4>Clockwise - -></h4>
+			</div>
+		</div> <!-- Close controls row -->
+
+	</div> <!-- Close container -->
+
+	<!-- Add modal containing freeflight information -->
+	<div class="modal fade" id="info">
+		<div class="modal-dialog">
+		     <!-- Modal content-->
+			<div class="modal-content">
+			    <div class="modal-header">
+			    	<!-- Add modal title -->
+			      <h4 class="modal-title">Freeflight Information</h4>
+			    </div>
+			    <!-- Add model information -->
+			    <div class="modal-body">
+			    	<h3 style="color: white">.</h3>
+				    <h3 style="color: white">.</h3>
+				    <h3>This page allows the drone to be flown freely using dronestream</h3>
+				    <p></p>
+				    <h3>Use the contols below to manoeuvre the drone</h3>
+			    </div>
+			    <div class="modal-footer">
+			    	<!-- Close modal button -->
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    </div>
+			</div>      
+		</div>
+	</div>
+
+<!-- Link scripts -->
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/js/flight.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!-- Declare document type as html -->
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Add page title -->
+	<title>Drone Index</title>
+
+	<!-- Link style sheets -->
+  	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="/css/droneStyles.css">
+
+  	<!-- Link Google fonts -->
+  	<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Orbitron:400,500|Russo+One|Timmana" rel="stylesheet">
+  	
+
+  	<!-- Link scripts -->
+  	<script type="text/javascript" src="/js/nodecopter-client.js"></script>
+  	<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  	<!-- Link icons -->
+  	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+  	<!-- Link favicon icon -->
+  	<link rel="icon" type="image/png" href="css/images/favicon-paper-plane-o.ico">
+
+  	<!-- Add script for dronstream-->
+	<script>
+
+		$(function () {
+            function startArDRoneStream() {
+                new NodecopterStream(document.getElementById("placeholder"), {port: 3001});
+            }
+            startArDRoneStream();
+        })
+    </script>
+
+  	<!-- Add script for button calls-->
+	<script>
+
+       function call(name) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', name, true);
+        xhr.send();
+      }
+
+    </script>
+
+</head>
+
+<body>
+	<!-- Create navigation bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	    	<!-- Add title and icon to navbar -->
+	      <p class="navbar-brand"><i class="far fa-paper-plane"></i>  Coffee Drone</p>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="navbar">
+	    	<!-- Add button to display training information -->
+	      <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#info" style="width: 120px">Training Info</button>
+	      	<!-- Add button to display recognition information -->
+	      <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#recoInfo" style="width: 150px">Recognition Info</button>
+	      	<!-- Add button to display controls -->
+	      <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#conInfo" style="width: 110px">Controls</button>
+
+	      <ul class="nav navbar-nav navbar-right" style="font-size: 20px">
+	      	<!-- Add link to freeflight page -->
+	        <li><a href="/flight">FreeFlight  <i class="fab fa-angellist"></i></a></li>
+	        <li><a href="#"><i class="far fa-hand-spock"></i></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav> <!-- Close navbar -->
+
+	<!-- Create container for the rest of page information -->
+	<div class = "container" align="center">
+
+		<!-- Create row for canvas -->
+		<div class = "row" style="height:80%;">
+			<!-- Add canvas to to display frames for user -->
+			<div class="col-lg-12" style="text-align: center; padding-top: 35px;">	
+   				<canvas id="canvas" width="640" height="360"></canvas>
+   		 	</div>
+		</div> <!-- Close canvas row -->
+
+		<!-- Create row for buttons -->
+		<div class = "row" style="height:20%; background: black">
+			<!-- Create column to take up half of the row -->
+			<div class = 'col-lg-6'>
+				<!-- Create post form to take in training name and call training function -->
+				<form class='form-inline' name=trainForm id="trainForm" method="POST" action="/">
+					<div class = 'form-group'>
+						<input type="text" class="form-control" id="trainName" name ="trainName"  placeholder="Please enter your name">
+					</div>
+					<button class="btn btn-default btn-lg" type="submit" value="Add Face";"><i class="fab fa-css3"></i>Start Trainer</button>
+				</form>
+			</div>
+
+			<!-- Create column to take up other half of row -->
+			<div class = 'col-lg-6'>
+				<!-- Create post form to take in recogniser name and call recogniser function -->
+				<form class='form-inline' name=recForm id="recForm" method="POST" action="/">
+					<div class = 'form-group'>
+						<input type="text" class="form-control" id="recName" name ="recName"  placeholder="Please enter your name">
+					</div>
+					<button class="btn btn-default btn-lg" type="submit" value="Search Face";"><i class="fab fa-css3"></i>Recognizer</button>
+				</form>
+			</div>
+		</div> <!-- Close button row -->
+
+	</div> <!-- Close container -->
+
+	<!-- Add modal for training information -->
+	<div class="modal fade" id="info">
+		<div class="modal-dialog">
+		     <!-- Modal content-->
+			<div class="modal-content">
+			    <div class="modal-header">
+			    	<!-- Add modal title -->
+			      <h4 class="modal-title">Training Information</h4>
+			    </div>
+			    <!-- Add model information -->
+			    <div class="modal-body" id="indexModal">
+			      	<h4>Enter your name and click Start Trainer</h4>
+				    <h4>Place your face in front of the drones camera</h4>
+				    <h4>Allow the drone to take pictures of your face from differant angles and distances</h4>
+				    <h4>Keep doing this until the display says "Image capture complete"</h4>
+				    <h4>...And your done, training data has been captured</h4>
+				    <h4>Ensure no-one else's face enters the frame while the drone is taking pictures</h4>
+			    </div>
+			    <div class="modal-footer">
+			    	<!-- Close modal button -->
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    </div>
+			</div>      
+		</div>
+	</div>
+
+	<!-- Add modal for recognition information -->
+	<div class="modal fade" id="recoInfo">
+		<div class="modal-dialog">
+		     <!-- Modal content-->
+			<div class="modal-content">
+			    <div class="modal-header">
+			    	<!-- Add modal title -->
+			      <h4 class="modal-title">Recognition Information</h4>
+			    </div>
+			    <!-- Add model information -->
+			    <div class="modal-body" id="indexModal">
+			      	<h4>Enter your name and click Recognizer</h4>
+				    <h4>The Drone will then takeoff</h4>
+				    <h4>The drone will then search for your face</h4>
+				    <h4>Once your face is found the drone will then fly over to you</h4>
+				    <h4>After twenty seconds the drone will fly away and land</h4>
+			    </div>
+			    <div class="modal-footer">
+			    	<!-- Close modal button -->
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    </div>
+			</div>      
+		</div>
+	</div>
+
+	<!-- Add modal outside fixed area -->
+	<div class="modal fade" id="conInfo">
+		<div class="modal-dialog">
+		     <!-- Modal content-->
+			<div class="modal-content">
+			    <div class="modal-header">
+			    	<!-- Add modal title -->
+			      <h4 class="modal-title">Flight Controls</h4>
+			    </div>
+			    <!-- Add model information -->
+			    <div class="modal-body" id="conModal">
+			      	<h1>.</h1>
+			      	<h1>.</h1>
+			      	<h1>.</h1>
+			      	<h1>.</h1>
+			    </div>
+			    <div class="modal-footer">
+			    	<!-- Close modal button -->
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    </div>
+			</div>      
+		</div>
+	</div>
+
+<!-- Link scripts -->
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/js/flight.js"></script>
+
+<!-- Script to feed frames to client canvas after opencv processing -->
+<script type="text/javascript">
+
+	//Create socket
+	var socket = io.connect('http://localhost:3000');
+
+	//Connect to server
+	socket.on('connect', function() {
+		console.log('Connected to server');
+	});
+
+	//Create canvas for output
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	var img = new Image();
+
+	// Canvas image on page load
+	img.src = '/css/images/coffee3.jpg';
+
+	//Load background image
+	img.onload = function (){
+		context.drawImage(img, 0, 0, 640, 360);
+	};
+
+	//Get frame from server
+	socket.on('frame', (data) => {
+		img.src = 'data:image/jpg;base64, ' + data;
+	});
+
+</script>
+
+</body>
+</html>

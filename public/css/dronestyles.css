@@ -1,0 +1,88 @@
+html {
+	height:100%;
+	width: 100%;
+}
+
+body {
+	height:100%;
+	width:100%;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.container{
+	height:100%;
+	width:100%;
+}
+
+.navbar{
+	border-bottom: 2px solid white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+.row {
+	padding-top: 50px;
+	border: 2px solid white;
+	background-image: url('./images/graffiti.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+#placeholder {
+	padding-top: 50px;
+}
+
+.form-control {
+	height: 45px;
+}
+
+#canvas {
+	border: solid 2px black;
+	width: 640px;
+  	height: 380px;
+}
+
+.tb {
+	width: 20%;
+}
+
+.modal-header {
+	background-color: black;
+	color: white;
+}
+
+.modal-footer {
+	background-color: black;
+	color: white;
+}
+
+.modal-body{
+	background-image: url('./images/Drone2.jpg');
+	background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+#indexModal {
+	background-image: url('./images/coffee2.jpg');
+	background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+#conModal {
+	background-image: url('./images/control.png');
+	background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+
+
