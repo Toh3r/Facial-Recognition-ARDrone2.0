@@ -57,7 +57,7 @@ while (true){
 
 //Print arrays are full
 console.log('Arrays filled');
-		
+
 //Train face recognizer using data from arrays
 lbph.train(training_Data, labels);
 
@@ -84,14 +84,14 @@ var func = setInterval(function() {
 	//After 400 frames, Drone takeoff
 	if(frameCount == 450){
 		console.log('Starting shortly');
-		// client.takeoff();
-		// client
-		// 	.after(5000, function(){
-		// 		this.up(0.2);
-		// 	})
-		// 	.after(4700, function(){
-		// 		this.stop();
-		// 	})
+		client.takeoff();
+		client
+			.after(5000, function(){
+				this.up(0.2);
+			})
+			.after(4700, function(){
+				this.stop();
+			})
 	}
 
 	//Skip first 550 frames to avoid lag at start of videocapture
@@ -105,7 +105,7 @@ var func = setInterval(function() {
 		//Convert frame to grayscale
 		var grayImg = frame.bgrToGray();
 
-		//Check if frame contains face 
+		//Check if frame contains face
 		var faceDetect = classifier.detectMultiScale(grayImg).objects;
 
 		//If no face detected in frame
@@ -116,15 +116,15 @@ var func = setInterval(function() {
 			//Print to console
 			console.log('No face found');
 
-			//Rotate clockwise for 2 seconds at 30% of top speed
-			// client
-			// 	.after(100, function(){
-			// 		this.clockwise(0.3);
-			// 	})
-			// 	.after(2000, function(){
-			// 		this.stop();
-			// 	})
-		} 
+			Rotate clockwise for 2 seconds at 30% of top speed
+			client
+				.after(100, function(){
+					this.clockwise(0.3);
+				})
+				.after(2000, function(){
+					this.stop();
+				})
+		}
 
 		//If face is visible in frame
 		else if (faceDetect.length) {
@@ -155,19 +155,19 @@ var func = setInterval(function() {
 				var confidence = 100 * (1 - (conf/400)).toFixed(2);
 
 				var display = confidence + '% Confident';
-				
+
 				//If confidence greater that 80
 				if(confidence > 75){
 					console.log(display + ', is likely ' + recogName);
 
 					//Add confidence value to output frame
-					frame.putText(display, 
-					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 30 ), 
+					frame.putText(display,
+					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 30 ),
 					1, 2,  new cv.Vec(0,220,0), 2);
 
 					//Add text to output frame
-					frame.putText('Is likely ' + recogName, 
-					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 55 ), 
+					frame.putText('Is likely ' + recogName,
+					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 55 ),
 					1, 2,  new cv.Vec(0,220,0), 2);
 
 					//If face in frame is smaller than 40
@@ -179,38 +179,38 @@ var func = setInterval(function() {
 								//Print to console
 								console.log('CLOOOOOOOOOCK');
 
-								//Turn clockwise for 300ms at 30% top speed
-								// client
-								// 	.after(100, function(){
-								// 		this.clockwise(0.3);
-								// 	})
-								// 	.after(300, function(){
-								// 		this.stop();
-								// 	})
+								// Turn clockwise for 300ms at 30% top speed
+								client
+									.after(100, function(){
+										this.clockwise(0.3);
+									})
+									.after(300, function(){
+										this.stop();
+									})
 
 							//If face is to far left
 							} else if (faceDetect[0]['x'] < 150) {
 								//Print to console
 								console.log('COOOOUUUUUNNNNTERRRRRRRRRR');
 
-								//Turn counter-clockwise for 300ms at 30% top speed
-								// client
-								// 	.after(100, function(){
-								// 		this.counterClockwise(0.3);
-								// 	})
-								// 	.after(300, function(){
-								// 		this.stop();
-								// 	})
+								// Turn counter-clockwise for 300ms at 30% top speed
+								client
+									.after(100, function(){
+										this.counterClockwise(0.3);
+									})
+									.after(300, function(){
+										this.stop();
+									})
 							}
 
-							//Move forward for 2200ms at 10% of top speed
-							// client
-							// 	.after(100, function(){
-							// 		this.front(0.1)
-							// 	})
-							// 	.after(3500, function(){
-							// 		this.stop();
-							// 	})
+							// Move forward for 2200ms at 10% of top speed
+							client
+								.after(100, function(){
+									this.front(0.1)
+								})
+								.after(3500, function(){
+									this.stop();
+								})
 					}
 
 					//If face size between 40 and 80
@@ -223,78 +223,72 @@ var func = setInterval(function() {
 								//Print to console
 								console.log('CLOOOOOOOOOCK');
 
-								//Move clockwise for 200ms at 30% of top speed
-								// client
-								// 	.after(100, function(){
-								// 		this.clockwise(0.3);
-								// 	})
-								// 	.after(300, function(){
-								// 		this.stop();
-								// 	})
+								// Move clockwise for 200ms at 30% of top speed
+								client
+									.after(100, function(){
+										this.clockwise(0.3);
+									})
+									.after(300, function(){
+										this.stop();
+									})
 							}
 
-							//If face to far left 
+							//If face to far left
 							else if (faceDetect[0]['x'] < 120) {
 								//Print to console
 								console.log('COOOOUUUUUNNNNTERRRRRRRRRR');
 
-								//Turn counter-clockwise for 200ms at 30% top speed
-								// client
-								// 	.after(100, function(){
-								// 		this.counterClockwise(0.3);
-								// 	})
-								// 	.after(300, function(){
-								// 		this.stop();
-								// 	})
+								// Turn counter-clockwise for 200ms at 30% top speed
+								client
+									.after(100, function(){
+										this.counterClockwise(0.3);
+									})
+									.after(300, function(){
+										this.stop();
+									})
 							}
 
-							//Move forward for 600ms at 10% of top speed
-							// client
-							// 	.after(100, function(){
-							// 		this.front(0.1)
-							// 	})
-							// 	.after(1200, function(){
-							// 		this.stop();
-							// 	})
-				} 
+							// Move forward for 600ms at 10% of top speed
+							client
+								.after(100, function(){
+									this.front(0.1)
+								})
+								.after(1200, function(){
+									this.stop();
+								})
+				}
 
-				//If face greater than 80
-				// else if (faceDetect[0]['height'] > 70) {
-				// 	//Print to console
-				// 	console.log('Stopped to give your manno some');
-				// 	console.log('Coffeeeeeeeeeeee')
-				// 	console.log('Coffeeeeeeeeeeee')
-				// 	console.log('Coffeeeeeeeeeeee')
+				// If face greater than 80
+				else if (faceDetect[0]['height'] > 70) {
 
-					
+					//Back away from person and land
+					client
+						.after(100, function(){
+							this.stop()
+						})
+						.after(100, function(){
+							this.down(0.3);
+						})
+						.after(3000, function(){
+							this.stop();
+						})
+						.after(10000, function(){
+							this.back(0.1)
+						})
+						.after(3000, function(){
+							this.stop()
+						})
+						.after(2000, function(){
+							this.land();
+						})
 
-				// 	client
-				// 		.after(100, function(){
-				// 			this.stop()
-				// 		})
-				// 		.after(100, function(){
-				// 			this.down(0.3);
-				// 		})
-				// 		.after(3000, function(){
-				// 			this.stop();
-				// 		})
-				// 		.after(10000, function(){
-				// 			this.back(0.1)
-				// 		})
-				// 		.after(3000, function(){
-				// 			this.stop()
-				// 		})
-				// 		.after(2000, function(){
-				// 			this.land();
-				// 		})
-						
-				// 	console.log('Doooooooooooooooonnnne');
+					console.log('Doooooooooooooooonnnne');
 
-				// 	//client.land();
-					
-				// 	//Stop the loop
-				// 	clearInterval(func);
-				// 	}
+					client.land();
+
+					//Stop the loop
+					clearInterval(func);
+					}
 
 				}
 
@@ -305,12 +299,12 @@ var func = setInterval(function() {
 					console.log(display + ' not likely ' + recogName);
 
 					//Add text to frame
-					frame.putText(display, 
-					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 30 ), 
+					frame.putText(display,
+					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 30 ),
 					1, 2,  new cv.Vec(0,220,0), 2);
 
-					frame.putText('Not likely ' + recogName, 
-					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 55 ), 
+					frame.putText('Not likely ' + recogName,
+					new cv.Point(faceDetect[0]['x'], faceDetect[0]['y'] + faceDetect[0]['height'] + 55 ),
 					1, 2,  new cv.Vec(0,220,0), 2);
 
 
@@ -318,12 +312,12 @@ var func = setInterval(function() {
 
 				//Add green rectangle around face for output frame
 				frame.drawRectangle(
-				new cv.Point(faceDetect[0]['x'], faceDetect[0]['y']), 
-				new cv.Point (faceDetect[0]['x'] + faceDetect[0]['width'], faceDetect[0]['y'] + faceDetect[0]['height']), 
+				new cv.Point(faceDetect[0]['x'], faceDetect[0]['y']),
+				new cv.Point (faceDetect[0]['x'] + faceDetect[0]['width'], faceDetect[0]['y'] + faceDetect[0]['height']),
 				new cv.Vec(0,220,0), 2);
 
 			}
-			
+
 		}
 
 		//Output frame to client
@@ -343,4 +337,3 @@ var func = setInterval(function() {
 }, 100); // Set interval to 100 ms
 
 }//Close function
-
