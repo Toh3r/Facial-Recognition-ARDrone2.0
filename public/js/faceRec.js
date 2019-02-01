@@ -116,7 +116,7 @@ var func = setInterval(function() {
 			//Print to console
 			console.log('No face found');
 
-			Rotate clockwise for 2 seconds at 30% of top speed
+			// Rotate clockwise for 2 seconds at 30% of top speed
 			client
 				.after(100, function(){
 					this.clockwise(0.3);
